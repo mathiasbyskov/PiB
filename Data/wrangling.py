@@ -1,4 +1,5 @@
 
+import sys
 
 class GSM_data:
 
@@ -61,3 +62,6 @@ class GSM_data:
 	        
 	        print("Sample: {} added ({} out of {})".format(sample[1], sample[0]+1, len(samples)))
 	    return df
+
+
+
