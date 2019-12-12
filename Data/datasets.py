@@ -3,8 +3,7 @@ import os
 os.chdir('C:\\Users\\mathi\\Desktop\\PiB')
 
 import pandas as pd
-import wrangling
-import Plots.plots
+import Data.wrangling
 
 
 #### DOWNLOAD AND CREATE DATAFRAMES #####
@@ -23,11 +22,19 @@ for data in datasets:
     
     # Collect data into pd-dataframe from sample-list
     samples = set(df_sample.Sample.tolist())
-    df_geneexp = wrangling.GSM_data(samples, download = download, filepath = str('./Samples/' + data + '/'), silent = True).df
+    df_geneexp = Data.wrangling.GSM_data(samples, download = download, filepath = str('./Samples/' + data + '/'), silent = True).df
     df_merged = pd.merge(df_sample, df_geneexp, on='Sample', how='inner')
     df_merged.to_csv(str('./Samples/' + data + '/' + data + '.csv'), header = True, index = False)
     
 
+# NO. SAMPLES!
+
+    # GPL96: 167
+    # GPL570: 192
+    # GPL8432: 104
+    # GPL10379: 207
+    # GPL10558: 263
+    # GPL15659: 145
 
 
 #### LOAD ALREADY EXISTING DATAFRAMES #####
@@ -41,15 +48,25 @@ GPL15659 = pd.read_csv('./Data/Samples/GPL15659/GPL15659.csv', header = 0, index
 
 
 
+#### MERGES BETWEEN DATAFRAMES ####
 
-# NO. SAMPLES!
+df_GPL96_GPL570 = pd.concat([GPL96, GPL570], join = 'inner')
+df_GPL8432_GPL10558 = pd.concat([GPL8432, GPL10558], join = 'inner')
 
-    # GPL96: 167
-    # GPL570: 192
-    # GPL8432: 104
-    # GPL10379: 207
-    # GPL10558: 263
-    # GPL15659: 145
+df_GPL96_GPL570.to_csv('./Data/Samples/GPL96_GPL570/GPL96_GPL570.csv', header = True,   index = False)
+
+#### CREATE VALIDATION SET ####
+import numpy as np
+
+frac = np.random.rand(len(df_GPL96_GPL570)) < 0.85
+
+
+train = df_GPL96_GPL570[frac]           # n = 308
+validation  = df_GPL96_GPL570[~frac]    # n = 51
+
+# Save to .csv-file
+train.to_csv(str('./Data/Samples/' + 'GPL96_GPL570' + '/' + 'GPL96_GPL570' + '.csv'), header = True, index = False)
+validation.to_csv(str('./Data/Samples/' + 'GPL96_GPL570' + '/' + 'GPL96_GPL570_VALIDATION' + '.csv'), header = True, index = False)
 
 
 # POSSIBLE MERGES!
