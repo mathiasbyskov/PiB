@@ -4,14 +4,16 @@ This repository holds the files and scripts related to "Project in Bioinformatic
 
 ## Project Description
 
-*Title*: Prediction and Investigation of Cancerous Metastasis Gene Expression Data Through Machine Learning Methods
+**Title:**      
+Prediction and Investigation of Cancerous Metastasis Gene Expression Data Through Machine Learning Methods
 
+**Description:**     
 In this proejct prediction and inference was done on gene-expression samples derived from the Human Cancer Metastasis Database. Various dimensionality reducing methods and classification methods were performed.
 
-*Dimensionality reduction methods performed:* 
+**Dimensionality reduction methods performed:**      
 PCA, Multidimensional Scaling, Isomap, Locally Linear Embedding and t-SNE.
 
-*Classification methods applied:*
+**Classification methods applied:**     
 Logistic regression, Random Forest, XGBoost and Support Vector Machines.
 
 
