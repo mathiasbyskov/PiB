@@ -16,7 +16,7 @@ pd.set_option('display.max_rows',20)
 training_samples = pd.read_csv('./Data/Samples/GPL570/train_samples.csv', header=0, index_col=False)
 test_samples = pd.read_csv('./Data/Samples/GPL570/test_samples.csv', header=0, index_col=False)
 
-methods = ['SVM']
+methods = ['Logistic', 'RandomForest', 'XGboost', 'SVM']
 datasets = ['CV-EXT', 'PCA', 'TSNE', 'MDS', 'ISOMAP', 'LLE']
 
 for method in methods:
